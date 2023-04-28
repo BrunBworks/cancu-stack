@@ -41,7 +41,7 @@ const CommonContainer: React.FC<any> = ({
     event.preventDefault();
     setAnimation(!animation);
     // TODO: find a better way to subscribe to changing shopping context
-    updateCommerceContext();
+    //updateCommerceContext();
   };
 
   const { articleContent, metaTitle, metaDescription, ogImage } = compositionInstance?.parameters || {};
@@ -68,7 +68,7 @@ const CommonContainer: React.FC<any> = ({
     // TODO: rework this
     const orderId = localStorage.getItem(`order-${country?.code?.toLowerCase()}`);
     const response = await fetch(
-      `https://uniform-engineering.commercelayer.io/api/orders/${orderId}?include=line_items.item,line_items.line_item_options.sku_option`,
+      `https://cancu-stack.commercelayer.io/api/orders/${orderId}?include=line_items.item,line_items.line_item_options.sku_option`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
