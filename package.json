@@ -48,7 +48,8 @@
     "generate:enrichments": "ts-node scripts/generate-enrichments.ts",
     "import:package": "ts-node scripts/import-package",
     "import:all-packages": "npm run import:package -- --articles",
-    "copy:theme": "ts-node scripts/copy-theme.ts"
+    "copy:theme": "ts-node scripts/copy-theme.ts",
+    "setup:contentful": "node ./scripts/setup.js"
   },
   "dependencies": {
     "@algolia/recommend": "4.14.3",
@@ -68,15 +69,13 @@
     "@uniformdev/cli": "18.34.0",
     "@uniformdev/context": "18.34.0",
     "@uniformdev/context-devtools": "18.34.0",
-    "@uniformdev/context-edge": "18.34.0",
-    "@uniformdev/context-edge-vercel": "18.34.0",
     "@uniformdev/context-gtag": "18.34.0",
     "@uniformdev/context-next": "18.34.0",
     "@uniformdev/context-react": "18.34.0",
-    "@uniformdev/project-map": "18.34.0",
     "algoliasearch": "^4.15.0",
     "classnames": "^2.3.1",
     "contentful": "^9.1.34",
+    "contentful-import": "^8.5.47",
     "critters": "0.0.16",
     "formik": "^2.2.9",
     "graphql": "^16.6.0",
