@@ -13,8 +13,6 @@ import { CLOUDINARY_PARAMETER_TYPES, createCloudinaryEnhancer } from '@uniformde
 import { cloudinaryModelConverter } from './converters/cloudinaryModelConverter';
 import articleListEnhancer from './enhancers/articleList/articleListEnhancer';
 import articleListNavigationEnhancer from './enhancers/articleList/articleListNavigationEnhancer';
-import taxonEnhancer from './enhancers/commercelayer/taxonEnhancer';
-import productEnhancer from './enhancers/commercelayer/productEnhancer';
 import { ALGOLIA_PARAMETER_TYPES } from '@uniformdev/canvas-algolia';
 import { algoliaConfigured, algoliaEnhancer } from './enhancers/algolia/algoliaEnhancer';
 import algoliaConverter from './enhancers/algolia/algoliaConverter';
@@ -26,14 +24,14 @@ const nullEnhancer = () => {
 
 const getEnhancers = (context: { language: string; preview: boolean; product?: string }): EnhancerBuilder => {
   const { language, preview, product } = context;
-  // console.log('PASSED LANGUAGE', { language });
+  console.log('PASSED LANGUAGE', { language });
   // console.log('PREVIEW', { preview });
   // console.log('PRODUCT', { product });
 
   let enhancingLocale = language;
   if (!enhancingLocale) {
     enhancingLocale = process.env.CONTENTFUL_LOCALE || 'en';
-    // console.log('USING LOCALE ' + enhancingLocale);
+    console.log('USING LOCALE ' + enhancingLocale);
   }
 
   return new EnhancerBuilder()
@@ -52,10 +50,6 @@ const getEnhancers = (context: { language: string; preview: boolean; product?: s
           articleListNavigationEnhancer(data, preview)
         )
       )
-    )
-    .component('featuredProducts', featuredProducts => featuredProducts.data('category', taxonEnhancer))
-    .component('productPromo', productPromo =>
-      productPromo.parameterName('product', async (data: any) => productEnhancer(data, enhancingLocale, preview))
     )
     .parameterType(
       CANVAS_CONTENTFUL_PARAMETER_TYPES,

@@ -10,7 +10,6 @@ import PageHead from '@/components/Meta/PageHead';
 import LayoutContext from '@/context/LayoutContext';
 import { CommerceContext } from '@/context/commerce/CommerceContext';
 import ShoppingBag from '@/components/commercelayer/ShoppingBag';
-import { useGetToken } from '@/hooks/commerce/useGetToken';
 import { CommerceLayer, OrderContainer, OrderStorage } from '@commercelayer/react-components';
 import { parseLanguageCode } from '@/utils/parser';
 import { useRouter } from 'next/router';
@@ -53,12 +52,12 @@ const CommonContainer: React.FC<any> = ({
     query: { lang },
   } = useRouter();
 
-  const token = useGetToken({
-    clientId: clientId as string,
-    endpoint: endpoint as string,
-    scope: `market:${marketId}`,
-    countryCode: country?.code?.toLowerCase() as string,
-  });
+  // const token = useGetToken({
+  //   clientId: clientId as string,
+  //   endpoint: endpoint as string,
+  //   scope: `market:${marketId}`,
+  //   countryCode: country?.code?.toLowerCase() as string,
+  // });
   const languageCode = parseLanguageCode(lang as string, 'toLowerCase', true);
 
   const updateCommerceContext = async () => {
@@ -66,32 +65,32 @@ const CommonContainer: React.FC<any> = ({
     // const sdk = await getSdkWithToken(token);
     // const lineItems = await sdk.orders.list();
     // TODO: rework this
-    const orderId = localStorage.getItem(`order-${country?.code?.toLowerCase()}`);
-    const response = await fetch(
-      `https://cancu-stack.commercelayer.io/api/orders/${orderId}?include=line_items.item,line_items.line_item_options.sku_option`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    // const orderId = localStorage.getItem(`order-${country?.code?.toLowerCase()}`);
+    // const response = await fetch(
+    //   `https://cancu-stack.commercelayer.io/api/orders/${orderId}?include=line_items.item,line_items.line_item_options.sku_option`,
+    //   {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //   }
+    // );
 
-    const data = await response.json();
+    // const data = await response.json();
 
-    const quirks = {
-      cartActive: data.data.attributes?.skus_count > 0,
-      cartGuest: data.data.attributes?.guest,
-      cartBigSpender: data.data.attributes?.total_amount_cents > 10000,
-      cartTotal: data.data.attributes?.total_amount_cents,
-      cartSkuCount: data.data.attributes?.skus_count,
-    };
+    // const quirks = {
+    //   cartActive: data.data.attributes?.skus_count > 0,
+    //   cartGuest: data.data.attributes?.guest,
+    //   cartBigSpender: data.data.attributes?.total_amount_cents > 10000,
+    //   cartTotal: data.data.attributes?.total_amount_cents,
+    //   cartSkuCount: data.data.attributes?.skus_count,
+    // };
 
     // TODO: reset signals (if cart is updated)
-    await context.update({
-      quirks,
-    });
+    // await context.update({
+    //   quirks,
+    // });
 
-    console.log({ quirks });
+    // console.log({ quirks });
   };
 
   const { type: compositionType } = composition || {};
@@ -99,49 +98,47 @@ const CommonContainer: React.FC<any> = ({
   return (
     <CommerceContext.Provider value={commerceContext}>
       <LayoutContext.Provider value={{ handleAnimation }}>
-        <CommerceLayer accessToken={token} endpoint={endpoint}>
-          <PageHead metaTitle={pageMetaTitle} metaDescription={pageMetaDescription} ogImage={pageOgImage} />
-          <OrderStorage persistKey={`order-${country?.code?.toLowerCase()}`}>
-            <OrderContainer attributes={{ language_code: languageCode }}>
-              <div className="min-h-[calc(100vh-166px)]">
-                {globalComposition && (
-                  <UniformComposition data={globalComposition} behaviorTracking="onLoad">
-                    <UniformSlot name="header" resolveRenderer={resolveRenderer} />
-                  </UniformComposition>
-                )}
-                {composition && (
-                  <CompositionContext.Provider value={composition}>
-                    <UniformComposition
-                      data={composition}
-                      contextualEditingEnhancer={contextualEditingEnhancer}
-                      behaviorTracking="onLoad"
-                    >
-                      {compositionType === 'productDetailPage' ? (
-                        <ProductDetailPageContainer>
-                          {' '}
-                          <UniformSlot name="content" resolveRenderer={resolveRenderer} />
-                        </ProductDetailPageContainer>
-                      ) : (
-                        <UniformSlot name="content" resolveRenderer={resolveRenderer} />
-                      )}
-                    </UniformComposition>
-                  </CompositionContext.Provider>
-                )}
-              </div>
+        <PageHead metaTitle={pageMetaTitle} metaDescription={pageMetaDescription} ogImage={pageOgImage} />
+        <OrderStorage persistKey={`order-${country?.code?.toLowerCase()}`}>
+          <OrderContainer attributes={{ language_code: languageCode }}>
+            <div className="min-h-[calc(100vh-166px)]">
               {globalComposition && (
                 <UniformComposition data={globalComposition} behaviorTracking="onLoad">
-                  <ShoppingBag
-                    composition={globalComposition.slots.shoppingBag[0]}
-                    active={animation}
-                    handleAnimation={handleAnimation}
-                    lang={lang as string}
-                  />
-                  <UniformSlot name="footer" resolveRenderer={resolveRenderer} />
+                  <UniformSlot name="header" resolveRenderer={resolveRenderer} />
                 </UniformComposition>
               )}
-            </OrderContainer>
-          </OrderStorage>
-        </CommerceLayer>
+              {composition && (
+                <CompositionContext.Provider value={composition}>
+                  <UniformComposition
+                    data={composition}
+                    contextualEditingEnhancer={contextualEditingEnhancer}
+                    behaviorTracking="onLoad"
+                  >
+                    {compositionType === 'productDetailPage' ? (
+                      <ProductDetailPageContainer>
+                        {' '}
+                        <UniformSlot name="content" resolveRenderer={resolveRenderer} />
+                      </ProductDetailPageContainer>
+                    ) : (
+                      <UniformSlot name="content" resolveRenderer={resolveRenderer} />
+                    )}
+                  </UniformComposition>
+                </CompositionContext.Provider>
+              )}
+            </div>
+            {globalComposition && (
+              <UniformComposition data={globalComposition} behaviorTracking="onLoad">
+                <ShoppingBag
+                  composition={globalComposition.slots.shoppingBag[0]}
+                  active={animation}
+                  handleAnimation={handleAnimation}
+                  lang={lang as string}
+                />
+                <UniformSlot name="footer" resolveRenderer={resolveRenderer} />
+              </UniformComposition>
+            )}
+          </OrderContainer>
+        </OrderStorage>
       </LayoutContext.Provider>
     </CommerceContext.Provider>
   );
