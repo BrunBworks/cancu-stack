@@ -22977,7 +22977,7 @@
   "webhooks": [
     {
       "name": "Algolia - Delete unpublished entries",
-      "url": "https://MW77Y6R271.algolia.net/1/indexes/Products/{ /payload/sys/id }",
+      "url": "https://B63CBGTWUW.algolia.net/1/indexes/Products/{ /payload/sys/id }",
       "httpBasicUsername": null,
       "topics": [
         "Entry.unpublish"
@@ -23027,7 +23027,7 @@
       "headers": [
         {
           "key": "X-Algolia-Application-Id",
-          "value": "MW77Y6R271"
+          "value": "B63CBGTWUW"
         },
         {
           "key": "X-Algolia-API-Key",
@@ -23037,7 +23037,7 @@
     },
     {
       "name": "Algolia - Index entries",
-      "url": "https://MW77Y6R271.algolia.net/1/indexes/Products/{ /payload/sys/id }",
+      "url": "https://B63CBGTWUW.algolia.net/1/indexes/Products/{ /payload/sys/id }",
       "httpBasicUsername": null,
       "topics": [
         "Entry.publish"
@@ -23088,7 +23088,7 @@
       "headers": [
         {
           "key": "X-Algolia-Application-Id",
-          "value": "MW77Y6R271"
+          "value": "B63CBGTWUW"
         },
         {
           "key": "X-Algolia-API-Key",
@@ -23098,7 +23098,7 @@
     },
     {
       "name": "Index Entry",
-      "url": "https://uniform-commercelayer-poc.vercel.app/api/algolia?secret=javadrip&id={ /payload/sys/id }",
+      "url": "https://cancu-stack.vercel.app/api/algolia?secret=javadrip&id={ /payload/sys/id }",
       "httpBasicUsername": null,
       "topics": [
         "Entry.publish"
