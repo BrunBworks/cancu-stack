@@ -8,18 +8,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const id = req.query.id as string | undefined;
 
   const previewSecret = process.env.UNIFORM_PREVIEW_SECRET;
-  const algoliaAppId = process.env.ALGOLIA_APP_ID as string;
+  const algoliaAppId = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID as string;
+  const algoliaSearchKey = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY as string;
   const algoliaAdminKey = process.env.ALGOLIA_ADMIN_KEY as string;
-  const algoliaIndex = process.env.ALGOLIA_INDEX as string;
+  const algoliaIndex = process.env.NEXT_PUBLIC_ALGOLIA_INDEX as string;
   const contentfulSpaceId = process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID as string;
   const contentfulEnvironment = process.env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT as string;
   const contentfulCdaToken = process.env.NEXT_PUBLIC_CONTENTFUL_CDA_ACCESS_TOKEN as string;
-  
+
   if (secret !== previewSecret) {
     return res.status(401).json({ message: 'Secret was not provided or it does not match' });
   }
 
-  const algoliaClient = algoliasearch(algoliaAppId, algoliaAdminKey);
+  const algoliaClient = algoliasearch(algoliaAppId, algoliaSearchKey);
   const index = algoliaClient.initIndex(algoliaIndex);
 
   const contentfulClient = createClient({
