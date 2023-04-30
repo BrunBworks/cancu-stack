@@ -12,6 +12,7 @@ export const getStaticProps = async (context: any) => {
   const { slug, country, lang } = params || {};
 
   context.language = lang;
+  context.country = lang;
 
   const composition = await getCompositionByNodePath(slug, context);
 
@@ -28,7 +29,8 @@ export const getStaticProps = async (context: any) => {
       globalComposition,
       revalidate: Number.MAX_SAFE_INTEGER,
       preview,
-      language: lang
+      language: lang,
+      country: lang
     },
   };
 };
