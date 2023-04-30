@@ -15,6 +15,7 @@ import { parseLanguageCode } from '@/utils/parser';
 import { useRouter } from 'next/router';
 import { useUniformContext } from '@uniformdev/context-react';
 import ProductDetailPageContainer from '@/components/commercelayer/ProductDetailPageContainer';
+import { useGetToken } from '@/hooks/commerce/useGetToken';
 
 export const CompositionContext = React.createContext<RootComponentInstance | undefined>(undefined);
 
@@ -27,7 +28,7 @@ const CommonContainer: React.FC<any> = ({
 }) => {
   const { context } = useUniformContext();
   const { endpoint, clientId, country } = commerceContext || {};
-  const marketId = country?.marketId || 'all';
+  const marketId = '13268';
   const contextualEditingEnhancer = createUniformApiEnhancer({
     apiUrl: `/api/enhancers/enhance?language=${language}&country=${country?.code?.toLowerCase()}`,
   });
@@ -52,12 +53,12 @@ const CommonContainer: React.FC<any> = ({
     query: { lang },
   } = useRouter();
 
-  // const token = useGetToken({
-  //   clientId: clientId as string,
-  //   endpoint: endpoint as string,
-  //   scope: `market:${marketId}`,
-  //   countryCode: country?.code?.toLowerCase() as string,
-  // });
+  const token = useGetToken({
+    clientId: clientId as string,
+    endpoint: endpoint as string,
+    scope: `market:${marketId}`,
+    countryCode: country?.code?.toLowerCase() as string,
+  });
   const languageCode = parseLanguageCode(lang as string, 'toLowerCase', true);
 
   const updateCommerceContext = async () => {

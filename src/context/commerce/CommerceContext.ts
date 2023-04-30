@@ -65,7 +65,7 @@ export async function getCommerceContext(
 
       product.availability = await withCommerceLayerClient(
         {
-          market: country.marketId!,
+          market: '13268',
         },
         async ({ client: clSDK }) => {
           const availability = await getAvailabilityForSkus(clSDK, [product?.variants.at(0)?.code!]);
