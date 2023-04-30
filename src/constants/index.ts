@@ -42,24 +42,17 @@ export const corsConfig = {
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   origin: [
     'http://localhost:3000',
-    'https://javadrip.coffee',
-    'https://javadrip-dev.netlify.app',
-    'https://javadrip-starter.netlify.app',
-    'https://unistore-dev.netlify.app',
-    'https://javadrip-prod.netlify.app',
-    'https://javadrip-enablement.netlify.app',
-    'https://jd-dxca-demo.netlify.app',
-    'https://canary-fake-commerce-mesh-integration.netlify.app',
-    /.+--javadrip-dev\.netlify\.app$/,
-    /.+--unistore-dev\.netlify\.app$/,
-    /.+--unistoredemo\.netlify\.app$/,
-    /.+--3000\.local\.webcontainer\.io$/,
+    'https://cancu-stack.vercel.app',
+    /.+--cancu-stack\.vercel\.app$/,
+    /.+--vercel\.app$/,
+    /.+--3000\.local\.webcontainer\.io$/
+    
   ],
   credentials: true,
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
 export const countryLangConfig = new Map<string, string[]>();
-countryLangConfig.set('us', ['en-us', 'it-it']);
+countryLangConfig.set('us', ['en']);
 //countryLangConfig.set('ca', ['en-ca', 'fr-ca']);
-countryLangConfig.set('it', ['en-us', 'it-it']);
+countryLangConfig.set('it', ['it']);

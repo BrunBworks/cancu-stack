@@ -37,7 +37,7 @@ const parseProduct = (product: ContentfulProduct): SimpleProduct => {
   };
 };
 
-const allCountries = async (language = 'en-US') => {
+const allCountries = async (language = 'en') => {
   const lang = parseLanguage(language, '_', '-', 'lowercase');
   const {
     countryCollection: { items: countries },
@@ -68,7 +68,7 @@ const allCountries = async (language = 'en-US') => {
   return countries;
 };
 
-const allTaxonomies = async (catalogId: string, language = 'en-US'): Promise<SimpleTaxonomy[]> => {
+const allTaxonomies = async (catalogId: string, language = 'en'): Promise<SimpleTaxonomy[]> => {
   const lang = parseLanguage(language, '_', '-', 'lowercase');
   const {
     catalogCollection: { items },
@@ -141,7 +141,7 @@ const allTaxonomies = async (catalogId: string, language = 'en-US'): Promise<Sim
   });
 };
 
-const getProduct = async (slug: string, language = 'en-US', preview = false): Promise<SimpleProduct | null> => {
+const getProduct = async (slug: string, language = 'en', preview = false): Promise<SimpleProduct | null> => {
   const lang = parseLanguage(language, '_', '-', 'lowercase');
   const {
     productCollection: { items },
@@ -191,7 +191,7 @@ const getProduct = async (slug: string, language = 'en-US', preview = false): Pr
 
 const getProductById = async (
   productId: string,
-  language = 'en-US',
+  language = 'en',
   preview = false
 ): Promise<SimpleProduct | null> => {
   const lang = parseLanguage(language, '_', '-', 'lowercase');
@@ -269,7 +269,7 @@ const getProductSlugs = async () => {
   return localizedSlugs;
 };
 
-const getProductByTaxon = async (taxonId: string, language = 'en-US', preview = false): Promise<SimpleTaxon | null> => {
+const getProductByTaxon = async (taxonId: string, language = 'en', preview = false): Promise<SimpleTaxon | null> => {
   const lang = parseLanguage(language, '_', '-', 'lowercase');
   const { taxon } = await makeRequest<{
     taxon: ContentfulTaxon;

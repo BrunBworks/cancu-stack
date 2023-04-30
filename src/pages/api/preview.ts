@@ -71,8 +71,8 @@ const handler: NextApiHandler = async (req, res) => {
     }
   });
 
-  // TODO: reconsider how we set default localized url (now sets to /us/en-us)
-  const defaultLanguage = 'en-us';
+  // TODO: reconsider how we set default localized url (now sets to /us/en)
+  const defaultLanguage = 'en';
   const defaultCountry = 'us';
   const urlToRedirectTo = newQuery.toString()
     ? `/${defaultCountry}/${defaultLanguage}${url}?${newQuery.toString()}`

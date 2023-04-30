@@ -26,7 +26,7 @@ composition:
                   value: Success
                 locale:
                   type: localeSelect
-                  value: it-it
+                  value: it
                 ctaLink:
                   type: text
                   value: /products
@@ -51,7 +51,7 @@ composition:
                   value: 20% International Bean Bundle
                 locale:
                   type: localeSelect
-                  value: en-us
+                  value: en
                 ctaLink:
                   type: text
                   value: /products/bean

@@ -154,7 +154,7 @@ async function getNodesPaths(nodes: Array<any>) {
     ?.filter((node: any) => node?.compositionId! && node.type === 'composition')
     .map(async (node: any) => {
       const composition = await getCompositionById(node.compositionId, false, {
-        language: 'en-us',
+        language: 'en',
         country: 'us',
         preview: false,
       });

@@ -10,7 +10,7 @@ const IndexPage = ({ countries }: any) => {
 };
 
 export const getStaticProps = async () => {
-  const countries = await cms().allCountries('en-us');
+  const countries = await cms().allCountries('en');
   return {
     props: {
       countries,

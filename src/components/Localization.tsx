@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 const Localization = ({ component }: { component: ComponentInstance }) => {
   const router = useRouter();
-  const language = router.query.language || 'en-us';
+  const language = router.query.language || 'en';
 
   const slotData = component.slots?.[CANVAS_LOCALIZATION_SLOT];
 

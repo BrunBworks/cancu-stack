@@ -5,7 +5,7 @@ type Translation = {
 };
 
 const translations: Translation = {
-  'en-us': {
+  'en': {
     addToCart: 'Add to cart',
     available: 'available',
     notAvailable: 'Not available',
@@ -16,8 +16,8 @@ const translations: Translation = {
     freeOver: 'free over',
     language: 'language',
     languages: {
-      'en-us': 'english',
-      'it-it': 'italian',
+      'en': 'english',
+      'it': 'italian',
     },
     method: 'method',
     outOfStock: 'The requested quantity is not available',
@@ -47,7 +47,7 @@ const translations: Translation = {
     shipping: 'Shipping',
     algoliaCategory: 'category',
   },
-  'it-it': {
+  'it': {
     addToCart: 'Aggiungi al carrello',
     available: 'disponibile',
     notAvailable: 'non disponibile',
@@ -58,8 +58,8 @@ const translations: Translation = {
     freeOver: 'gratis oltre',
     language: 'lingua',
     languages: {
-      'en-us': 'inglese',
-      'it-it': 'italiano',
+      'en': 'inglese',
+      'it': 'italiano',
     },
     method: 'metodo',
     outOfStock: 'La quantità richiesta non è disponibile',

@@ -7,7 +7,7 @@ interface Props {
 }
 
 const CurrencyFormatter: FC<Props> = ({ currency = 'USD', amount, className }) => {
-  const formattedPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(amount);
+  const formattedPrice = new Intl.NumberFormat('en', { style: 'currency', currency }).format(amount);
 
   return <div className={className}>{formattedPrice}</div>;
 };

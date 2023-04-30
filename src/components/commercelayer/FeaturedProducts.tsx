@@ -76,7 +76,7 @@ const FeaturedProducts = ({
                           </li>
                           <li>
                             <a className="inline-flex uppercase items-center p-2 border border-gray-300 shadow-sm text-xs font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                              {translations[(lang as string) ?? 'en-us']?.viewMore}
+                              {translations[(lang as string) ?? 'en']?.viewMore}
                             </a>
                           </li>
                         </ul>
