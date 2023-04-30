@@ -27,26 +27,26 @@ const LanguageSelector: FunctionComponent<Props> = ({ options }) => {
   });
   const selectedOption = first(optionComponents?.filter(({ value }) => value === lang));
   const handleChange = (language: string) => {
-    push(`/${country}/${language}`);
+    push(`/${language}`);
     setShow(!show);
   };
   return (
     <div>
-      <div className="mt-1 relative">
+      <div className="relative mt-1">
         <button
           type="button"
           aria-haspopup="listbox"
           aria-expanded="true"
           aria-labelledby="listbox-label"
           onClick={() => setShow(!show)}
-          className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          className="relative w-full py-2 pl-3 pr-10 text-left bg-white border border-gray-300 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         >
           <span className="flex items-center">
-            <span className="flex-shrink-0 text-gray-700 truncate capitalize">{lang}</span>
+            <span className="flex-shrink-0 text-gray-700 capitalize truncate">{lang}</span>
           </span>
-          <span className="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+          <span className="absolute inset-y-0 right-0 flex items-center pr-2 ml-3 pointer-events-none">
             <svg
-              className="h-5 w-5 text-gray-400"
+              className="w-5 h-5 text-gray-400"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
@@ -62,14 +62,14 @@ const LanguageSelector: FunctionComponent<Props> = ({ options }) => {
         </button>
 
         <Transition show={show} leave="transition ease-in duration-100" leaveFrom="opacity-100" leaveTo="opacity-0">
-          <div className="absolute mt-1 w-full rounded-md bg-white shadow-lg" onMouseLeave={() => setShow(false)}>
+          <div className="absolute w-full mt-1 bg-white rounded-md shadow-lg" onMouseLeave={() => setShow(false)}>
             <ul
               title="Languages"
               tabIndex={-1}
               role="listbox"
               aria-labelledby="listbox-label"
               aria-activedescendant="listbox-item-3"
-              className="max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
+              className="py-1 overflow-auto text-base rounded-md max-h-56 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
             >
               {optionComponents?.map(({ value, name, image }, k) => {
                 const selected = value === selectedOption?.value;
@@ -98,7 +98,7 @@ const LanguageSelector: FunctionComponent<Props> = ({ options }) => {
                       } absolute inset-y-0 right-0 flex items-center pr-4 hover:bg-blue-500`}
                     >
                       <svg
-                        className="h-5 w-5"
+                        className="w-5 h-5"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"

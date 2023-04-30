@@ -26,9 +26,7 @@ const enhance = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(400).json({ message: 'Missing composition' });
   }
 
-  const {
-    serverRuntimeConfig: { previewSecret },
-  } = getConfig();
+  const previewSecret = process.env.PREVIEW_SECRET;
 
   const { composition } = body;
 
@@ -48,12 +46,10 @@ const enhance = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(401).json({ message: 'Not authorized' });
   }
 
-  const commerceContext = await getCommerceContext(true, language as string, country as string);
   const context = {
     preview: true,
-    language: language!,
-    country: country,
-    market: commerceContext.country.marketId,
+    language: language as string,
+    country: country as string,
   };
 
   await runEnhancers(composition, context);

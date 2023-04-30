@@ -141,7 +141,7 @@ export function getLocalizedNodePaths(nodePaths: Array<string>) {
     countries.forEach((country: string) =>
       countryLangConfig.get(country)?.forEach((lang: string) => {
         if (nodePath) {
-          localizedPaths.push(`/${country}/${lang}${nodePath}`.toLocaleLowerCase());
+          localizedPaths.push(`/${lang}${nodePath}`.toLocaleLowerCase());
         }
       })
     );

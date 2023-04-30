@@ -11,10 +11,7 @@ export const getStaticProps = async (context: any) => {
   const { params, preview = false } = context || {};
   const { slug, country, lang } = params || {};
 
-  const commerceContext = await getCommerceContext(preview, lang, country);
   context.language = lang;
-  context.country = country;
-  context.market = commerceContext.country.marketId;
 
   const composition = await getCompositionByNodePath(slug, context);
 
@@ -26,12 +23,12 @@ export const getStaticProps = async (context: any) => {
 
   return {
     props: {
+      lang: lang,
       composition,
       globalComposition,
       revalidate: Number.MAX_SAFE_INTEGER,
       preview,
-      language: lang,
-      commerceContext,
+      language: lang
     },
   };
 };

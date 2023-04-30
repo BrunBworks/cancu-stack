@@ -4,7 +4,7 @@ import getConfig from 'next/config';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const secret = req.query.secret as string | undefined;
-  const { previewSecret } = getConfig().serverRuntimeConfig;
+  const previewSecret = process.env.UNIFORM_PREVIEW_SECRET;
   if (secret !== previewSecret) {
     return res.status(401).json({ message: 'Secret was not provided or it does not match' });
   }

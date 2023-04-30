@@ -13,14 +13,14 @@ interface Props {
 
 const Link: React.FC<Props> = ({ title, href = '', className = '', children, scroll = true }) => {
   const router = useRouter();
-  const { country, lang } = router.query || {};
+  const { lang } = router.query || {};
 
   const defaultClasses = 'cursor-pointer text-sm font-bold not-italic';
 
   if (!href) return null;
   const path = href.startsWith('/') ? href : `/${href}`;
 
-  const localizedHref = `/${(country as string).toLocaleLowerCase()}/${(lang as string).toLocaleLowerCase()}${path}`;
+  const localizedHref = `/${(lang as string).toLocaleLowerCase()}${path}`;
   return href.startsWith('http') ? (
     <a href={href} className={classNames(defaultClasses, className)}>
       {children ?? title}

@@ -22,7 +22,7 @@ const nullEnhancer = () => {
   console.log('WARN: null enhancer called');
 };
 
-const getEnhancers = (context: { language: string; preview: boolean; product?: string }): EnhancerBuilder => {
+const getEnhancers = (context: {preview: boolean; language: string;  product?: string }): EnhancerBuilder => {
   const { language, preview, product } = context;
   console.log('PASSED LANGUAGE', { language });
   // console.log('PREVIEW', { preview });
@@ -78,7 +78,7 @@ const getEnhancers = (context: { language: string; preview: boolean; product?: s
 
 export default async function runEnhancers(
   composition: RootComponentInstance,
-  context: { language: string; preview: boolean; token: string; country: string; product?: string }
+  context: { preview: boolean; language: string; country: string; product?: string }
 ) {
   const enhancers = getEnhancers(context);
   await enhance({

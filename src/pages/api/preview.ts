@@ -4,9 +4,7 @@ import getConfig from 'next/config';
 import { getProjectMapClient } from '@/utils/canvas';
 
 const queryParamsToPreserve = [IN_CONTEXT_EDITOR_QUERY_STRING_PARAM];
-const {
-  serverRuntimeConfig: { previewSecret },
-} = getConfig();
+const previewSecret = process.env.PREVIEW_SECRET;
 
 const IS_PROD = process.env.NODE_ENV === 'production';
 
@@ -75,7 +73,7 @@ const handler: NextApiHandler = async (req, res) => {
   const defaultLanguage = 'en';
   const defaultCountry = 'us';
   const urlToRedirectTo = newQuery.toString()
-    ? `/${defaultCountry}/${defaultLanguage}${url}?${newQuery.toString()}`
+    ? `/${defaultLanguage}${url}?${newQuery.toString()}`
     : url;
 
   // console.log({ urlToRedirectTo });

@@ -12,7 +12,7 @@ const config = {
   },
   publicRuntimeConfig: {
     appVersion: process.env.npm_package_version,
-    hostName: process.env.VERCEL_URL || 'javadrip.coffee',
+    hostName: process.env.NEXT_PUBLIC_VERCEL_URL || 'javadrip.coffee',
     sanityProjectId: process.env.SANITY_PROJECT_ID,
     sanityDataset: process.env.SANITY_DATASET,
     cms: process.env.NEXT_PUBLIC_CMS,
@@ -21,7 +21,7 @@ const config = {
     projectId: process.env.UNIFORM_PROJECT_ID,
     apiKey: process.env.UNIFORM_API_KEY,
     apiHost: process.env.UNIFORM_CLI_BASE_URL || 'https://uniform.app',
-    previewSecret: process.env.UNIFORM_PREVIEW_SECRET || 'javadrip',
+    previewSecret: process.env.NEXT_PUBLIC_UNIFORM_PREVIEW_SECRET || 'javadrip',
     uniformContextOutputType: process.env.UNIFORM_CONTEXT_OUTPUT_TYPE || 'standard',
     algoliaAppId: process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
     algoliaAdminKey: process.env.NEXT_PUBLIC_ALGOLIA_ADMIN_KEY,

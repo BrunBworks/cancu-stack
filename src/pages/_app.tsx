@@ -8,9 +8,7 @@ import { MenuContextProvider } from '../context/MenuProvider';
 import '@/styles/globals.scss';
 import '@/styles/theme.scss';
 
-const {
-  serverRuntimeConfig: { uniformContextOutputType },
-} = getConfig();
+const uniformContextOutputType = process.env.UNIFORM_CONTEXT_OUTPUT_TYPE as any;
 
 const clientContext = createUniformContext();
 
