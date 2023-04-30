@@ -64,16 +64,16 @@ const getEnhancers = (context: {preview: boolean; language: string;  product?: s
       contentfulConfigured ? compose(contentfulQueryEnhancer(enhancingLocale), contentfulModelConverter) : nullEnhancer
     )
     .parameterType(CLOUDINARY_PARAMETER_TYPES, compose(createCloudinaryEnhancer(), cloudinaryModelConverter))
-    .parameterType(
-      ALGOLIA_PARAMETER_TYPES,
-      algoliaConfigured
-        ? compose(
-            ({ parameter }) => algoliaRecommendCurrentProductOverwrite({ parameter, productId: product! }),
-            algoliaEnhancer(),
-            algoliaConverter
-          )
-        : nullEnhancer
-    );
+    // .parameterType(
+    //   ALGOLIA_PARAMETER_TYPES,
+    //   algoliaConfigured
+    //     ? compose(
+    //         ({ parameter }) => algoliaRecommendCurrentProductOverwrite({ parameter, productId: product! }),
+    //         algoliaEnhancer(),
+    //         algoliaConverter
+    //       )
+    //     : nullEnhancer
+    // );
 };
 
 export default async function runEnhancers(
