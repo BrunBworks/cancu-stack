@@ -3,7 +3,7 @@ const path = require('path');
 
 const config = {
   reactStrictMode: true,
-  output: "export",
+  output: process.env.NEXT_PUBLIC_OUTPUT,
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
