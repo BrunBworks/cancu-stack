@@ -14,6 +14,7 @@
     "dev:next": "next dev",
     "build": "run-s copy:theme pull:manifest build:next",
     "build:next": "next build",
+    "build:export": "next export",
     "pull:manifest": "uniform context manifest download --output ./src/context/manifest.json",
     "start": "next start",
     "start-demo": "run-s pull:manifest build:next start",
@@ -93,6 +94,7 @@
     "react-multi-carousel": "^2.8.2",
     "react-transition-group": "^4.4.5",
     "sass": "^1.55.0",
+    "serve": "^14.2.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {

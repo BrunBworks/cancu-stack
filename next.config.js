@@ -3,10 +3,12 @@ const path = require('path');
 
 const config = {
   reactStrictMode: true,
+  output: "export",
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
   images: {
+    unoptimized: true,
     domains: ['res.cloudinary.com', 'images.ctfassets.net', 'cdn.sanity.io'],
     deviceSizes: [320, 420, 768, 1024, 1280],
   },
