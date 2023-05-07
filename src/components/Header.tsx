@@ -11,6 +11,7 @@ import LanguageSelector from '@/components/commercelayer/LanguageSelector';
 import CountrySelector from '@/components/commercelayer/CountrySelector';
 import { CommerceContext } from '@/context/commerce/CommerceContext';
 import LayoutContext from '@/context/LayoutContext';
+import { countries } from '@/constants';
 
 type HeaderProps = Type.ComponentProps<{
   logo: string;
@@ -20,7 +21,7 @@ type HeaderProps = Type.ComponentProps<{
 const Header: React.FC<HeaderProps> = ({ logo }) => {
   const commerceContext = React.useContext(CommerceContext);
   const layoutContext = React.useContext(LayoutContext);
-  const { countries, buildLanguages } = commerceContext || {};
+  //const { countries, buildLanguages } = CommerceContext;
   const [isOpen, setIsOpen] = React.useState(false);
   const router = useRouter();
 
@@ -48,23 +49,23 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
   );
 
   return (
-    <header className="relative border-b z-10">
+    <header className="relative z-10 border-b">
       <div
-        className="relative header_footer_container hidden lg:flex lg:flex-row lg:items-center lg:place-content-between lg:py-4"
+        className="relative hidden header_footer_container lg:flex lg:flex-row lg:items-center lg:place-content-between lg:py-4"
         role="navigation"
         aria-label="main-navigation"
       >
-        <div className="flex flex-1 justify-between pr-12">
+        <div className="flex justify-between flex-1 pr-12">
           {renderLogo(logo)}
-          <div className="flex lg:flex-row flex-col lg:items-center justify-center lg:pl-5 pb-10 lg:pb-0">
+          <div className="flex flex-col justify-center pb-10 lg:flex-row lg:items-center lg:pl-5 lg:pb-0">
             <UniformSlot name="topNav" />
           </div>
-          <div className="flex lg:flex-row flex-col lg:items-center justify-center lg:pl-5 pb-10 lg:pb-0">
+          <div className="flex flex-col justify-center pb-10 lg:flex-row lg:items-center lg:pl-5 lg:pb-0">
             <div>
               <CountrySelector options={countries} />
             </div>
             <div className="pl-4">
-              <LanguageSelector options={buildLanguages} />
+              <LanguageSelector options={countries} />
             </div>
             <div className="pl-4">
               <a href="#" onClick={layoutContext.handleAnimation}>
@@ -79,13 +80,13 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
           </div>
         </div>
       </div>
-      <div className="w-full lg:hidden flex h-20 flex-row items-center px-5 justify-between ">
+      <div className="flex flex-row items-center justify-between w-full h-20 px-5 lg:hidden ">
         <div className="basis-3/6">{renderLogo(logo)}</div>
-        <div className="flex flex-row justify-between basis-2/6 items-center">
+        <div className="flex flex-row items-center justify-between basis-2/6">
           <button
             type="button"
             aria-label="mobile navigation"
-            className="w-6 h-6 inline-flex focus:outline-none"
+            className="inline-flex w-6 h-6 focus:outline-none"
             onClick={toggleIsOpen}
           >
             {isOpen ? <IconArrow fill="black" /> : <IconHamburger fill="black" />}
@@ -94,8 +95,8 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
       </div>
       <div className="lg:hidden">
         {isOpen && (
-          <div className="absolute bg-white flex flex-col items-center w-full header_footer_container--mobile pt-16">
-            <div className="flex lg:flex-row flex-col lg:items-center justify-center lg:pl-5 pb-10 lg:pb-0">
+          <div className="absolute flex flex-col items-center w-full pt-16 bg-white header_footer_container--mobile">
+            <div className="flex flex-col justify-center pb-10 lg:flex-row lg:items-center lg:pl-5 lg:pb-0">
               <UniformSlot name="topNav" />
             </div>
           </div>

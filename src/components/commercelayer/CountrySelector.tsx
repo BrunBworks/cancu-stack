@@ -1,9 +1,11 @@
 import React, { FunctionComponent, useState } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { first } from 'lodash';
 import { Transition } from '@headlessui/react';
 import { Country } from '@/types/commerce';
 import translations from '@/translations/index';
+import { countries as optionComponents} from '@/constants';
 
 type Props = {
   options: Country[];
@@ -16,17 +18,10 @@ const CountrySelector: FunctionComponent<Props> = ({ options }) => {
     query: { country, lang, slug },
   } = useRouter();
 
-  const optionComponents = options?.map(({ code, name, image, defaultLocale }) => {
-    return {
-      value: code.toLowerCase(),
-      name,
-      image,
-      defaultLocale: defaultLocale.toLowerCase(),
-    };
-  });
-  const selectedOption = first(optionComponents?.filter(({ value }) => value === country));
+
+  const selectedOption = first(optionComponents?.filter(({ code }) => code === lang));
   const handleChange = (code: string, defaultLocale: string) => {
-    push(`/${defaultLocale}/${slug ?? ''}`);
+    push(`/${code}/${slug ?? ''}`);
     setShow(!show);
   };
   return (
@@ -41,7 +36,7 @@ const CountrySelector: FunctionComponent<Props> = ({ options }) => {
           className="relative w-full py-2 pr-10 text-left bg-white border border-gray-300 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         >
           <span className="flex items-center">
-            <img src={selectedOption?.image?.url} alt={selectedOption?.name} className="block ml-3 mt-0.5 w-6" />
+            <Image src={selectedOption?.image.url || '/public/img/american-flag.png'} alt={selectedOption?.image?.file?.alt || 'flag 2'} className="block ml-3 mt-0.5 w-6" />
           </span>
           <span className="absolute inset-y-0 right-0 flex items-center pr-2 ml-3 pointer-events-none">
             <svg
@@ -72,8 +67,8 @@ const CountrySelector: FunctionComponent<Props> = ({ options }) => {
               aria-activedescendant="listbox-item-3"
               className="py-1 overflow-auto text-base rounded-md max-h-56 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
             >
-              {optionComponents?.map(({ value, name, image, defaultLocale }, k) => {
-                const selected = value === selectedOption?.value;
+              {optionComponents?.map(({ code, name, image, defaultLocale }, k) => {
+                const selected = code === selectedOption?.code;
                 return (
                   <li
                     key={k}
@@ -81,10 +76,10 @@ const CountrySelector: FunctionComponent<Props> = ({ options }) => {
                     className={`cursor-default select-none relative py-2 pl-3 pr-9 hover:text-gray-50 hover:bg-blue-500 ${
                       selected ? '' : 'text-gray-900'
                     }`}
-                    onClick={() => handleChange(value, defaultLocale)}
+                    onClick={() => handleChange(code, defaultLocale)}
                   >
                     <div className="flex items-center">
-                      <img src={image.url} alt={name} className="flex-shrink-0 w-6" />
+                      <Image src={image.url} alt={image.file?.alt || 'flag 2'} className="flex-shrink-0 w-6" />
                     </div>
                     {/* Highlighted: "text-white", Not Highlighted: "text-indigo-600" */}
                     <span

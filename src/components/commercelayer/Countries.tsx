@@ -1,8 +1,9 @@
 import React, { FunctionComponent } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { isEmpty, first } from 'lodash';
 import { Country } from '@/types/commerce';
-
+import { countries as hardCodedCountries }  from '@/constants';
 type Item = Omit<Country, 'image'> & {
   image: { title: string; url: string };
 };
@@ -20,7 +21,6 @@ const Countries: FunctionComponent<Props> = ({ items, searchBy }) => {
       ? {
           pathname: `/[lang]`,
           query: {
-            searchBy,
             countryCode,
             lang,
           },
@@ -35,7 +35,7 @@ const Countries: FunctionComponent<Props> = ({ items, searchBy }) => {
     return (
       <Link key={key} href={href}>
         <div className="cursor-pointer">
-          <img title={countryCode} className="w-full border rounded hover:opacity-75" src={image.url} />
+          <Image title={countryCode} className="w-full border rounded hover:opacity-75" src={image.url} alt={countryCode} />
         </div>
       </Link>
     );
