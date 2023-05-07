@@ -40,6 +40,7 @@ export interface SimpleTaxon {
 export interface Image {
   file?: {
     url?: string;
+    alt?: string;
   };
   url: string;
 }
