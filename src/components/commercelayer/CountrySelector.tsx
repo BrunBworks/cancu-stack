@@ -12,16 +12,27 @@ type Props = {
 };
 
 const CountrySelector: FunctionComponent<Props> = ({ options }) => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false); 
   const {
     push,
     query: { country, lang, slug },
   } = useRouter();
+  console.log('slug', slug)
 
 
   const selectedOption = first(optionComponents?.filter(({ code }) => code === lang));
   const handleChange = (code: string, defaultLocale: string) => {
-    push(`/${code}/${slug ?? ''}`);
+    if(slug !== undefined && slug !== null && slug !== '') {
+      push({
+        pathname: '/[lang]/[[...slug]]',
+        query: { lang: code, slug: slug },
+      }, undefined, { shallow: true });
+    } else {
+      push({
+        pathname: '/[lang]',
+        query: { lang: code },
+      }, undefined, { shallow: true });
+    }
     setShow(!show);
   };
   return (
@@ -36,7 +47,7 @@ const CountrySelector: FunctionComponent<Props> = ({ options }) => {
           className="relative w-full py-2 pr-10 text-left bg-white border border-gray-300 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         >
           <span className="flex items-center">
-            <Image src={selectedOption?.image.url || '/public/img/american-flag.png'} alt={selectedOption?.image?.file?.alt || 'flag 2'} className="block ml-3 mt-0.5 w-6" />
+            <Image src={selectedOption?.image.url || '/public/img/american-flag.png'} alt={selectedOption?.image?.file?.alt || 'flag 2'} className="block ml-3 mt-0.5 w-6" width={24} height={14}/>
           </span>
           <span className="absolute inset-y-0 right-0 flex items-center pr-2 ml-3 pointer-events-none">
             <svg
@@ -79,7 +90,7 @@ const CountrySelector: FunctionComponent<Props> = ({ options }) => {
                     onClick={() => handleChange(code, defaultLocale)}
                   >
                     <div className="flex items-center">
-                      <Image src={image.url} alt={image.file?.alt || 'flag 2'} className="flex-shrink-0 w-6" />
+                      <Image src={image.url} alt={image.file?.alt || 'flag 2'} className="flex-shrink-0 w-6" width={24} height={14}/>
                     </div>
                     {/* Highlighted: "text-white", Not Highlighted: "text-indigo-600" */}
                     <span

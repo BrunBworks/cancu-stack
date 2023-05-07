@@ -27,6 +27,8 @@ const ButtonLink: React.FC<React.HTMLProps<HTMLButtonElement> & Props> = ({
     secondary: 'bg-black border-white text-white hover:border-black hover:text-theme_strong hover:bg-white',
     static: 'bg-white text-black hover:border-white hover:text-white hover:bg-black',
   };
+
+  console.log('href', href)
   return (
     <Link
       href={href}

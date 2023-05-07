@@ -35,7 +35,7 @@ const Countries: FunctionComponent<Props> = ({ items, searchBy }) => {
     return (
       <Link key={key} href={href}>
         <div className="cursor-pointer">
-          <Image title={countryCode} className="w-full border rounded hover:opacity-75" src={image.url} alt={countryCode} />
+          <Image title={countryCode} className="w-full border rounded hover:opacity-75" src={image.url} alt={countryCode} width={102} height={61} />
         </div>
       </Link>
     );

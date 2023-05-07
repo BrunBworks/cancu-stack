@@ -26,8 +26,18 @@ const LanguageSelector: FunctionComponent<Props> = ({ options }) => {
     };
   });
   const selectedOption = first(optionComponents?.filter(({ value }) => value === lang));
-  const handleChange = (language: string) => {
-    push(`/${language}`);
+  const handleChange = (lang: string) => {
+    if(slug !== undefined && slug !== null && slug !== '') {
+      push({
+        pathname: '/[lang]/[[...slug]]',
+        query: { lang: lang, slug: slug ?? '' },
+      }, undefined, { shallow: true});
+    } else {
+      push({
+        pathname: '/[lang]',
+        query: { lang: lang },
+      }, undefined, { shallow: true});
+    }
     setShow(!show);
   };
   return (
