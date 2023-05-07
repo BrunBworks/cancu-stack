@@ -26,12 +26,12 @@ const CountrySelector: FunctionComponent<Props> = ({ options }) => {
       push({
         pathname: '/[lang]/[[...slug]]',
         query: { lang: code, slug: slug },
-      }, undefined, { shallow: true });
+      });
     } else {
       push({
         pathname: '/[lang]',
         query: { lang: code },
-      }, undefined, { shallow: true });
+      });
     }
     setShow(!show);
   };

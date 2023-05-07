@@ -31,12 +31,12 @@ const LanguageSelector: FunctionComponent<Props> = ({ options }) => {
       push({
         pathname: '/[lang]/[[...slug]]',
         query: { lang: lang, slug: slug ?? '' },
-      }, undefined, { shallow: true});
+      });
     } else {
       push({
         pathname: '/[lang]',
         query: { lang: lang },
-      }, undefined, { shallow: true});
+      });
     }
     setShow(!show);
   };

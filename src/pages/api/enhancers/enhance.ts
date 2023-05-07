@@ -49,7 +49,7 @@ const enhance = async (req: NextApiRequest, res: NextApiResponse) => {
   const context = {
     preview: true,
     language: language as string,
-    country: country as string,
+    country: language as string,
   };
 
   await runEnhancers(composition, context);
