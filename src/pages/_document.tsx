@@ -1,10 +1,19 @@
 import React from 'react';
-import Document, { Head, Html, Main, NextScript } from 'next/document';
+import Document, { Head, Html, Main, NextScript,  DocumentContext, DocumentInitialProps } from 'next/document';
 
 class AppDocument extends Document {
+  static async getInitialProps(
+    ctx: DocumentContext,
+  ) {
+    const initialProps = await Document.getInitialProps(ctx);
+
+    return { ...initialProps, locale: ctx.query.lang || 'en' };
+  }
+
   render(): React.ReactElement {
+    
     return (
-      <Html lang="en">
+      <Html lang={this.props.locale}>
         <Head>
           <link rel="stylesheet" href="https://use.typekit.net/amw0suj.css" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
